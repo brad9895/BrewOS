@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "VancouverBrewingOS": {
+    "BrewOS": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

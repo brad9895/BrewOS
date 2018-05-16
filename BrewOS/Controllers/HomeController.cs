@@ -10,6 +10,9 @@ namespace VancouverBrewingOS.Controllers
 {
     public class HomeController : Controller
     {
+        public List<string> test = new List<string>() { "1", "2", "3", "4" };
+
+
         public IActionResult Index()
         {
             return View();
