@@ -10,11 +10,12 @@ namespace BrewOS.Models
     public class BrewOSContext : DbContext
     {
         public DbSet<Beer> Brews { get; set; }
+        public DbSet<BeerStyle> Styles { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=BrewOS.db");
-            //optionsBuilder.UseSqlite("FileName=./BrewOS.db");
         }
     }
 }

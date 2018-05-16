@@ -13,8 +13,9 @@ namespace BrewOS.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string Name { get; set; }
 
-        private double _ABV;
+        public double ABV { get; set; }
 
+        public string Type { get; set; }
 
 
     }

@@ -21,8 +21,8 @@ namespace VancouverBrewingOS
             using (var db = new BrewOSContext())
             {
                 db.Database.EnsureCreated();
-                db.Brews.Add(new Beer());
-
+                
+                db.SaveChanges();
                 BuildWebHost(args).Run();
             }
             
