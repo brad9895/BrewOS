@@ -11,12 +11,12 @@ namespace BrewOS.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public string Name { get; set; }
+        public string RecipeName { get; set; }
 
         public double ABV { get; set; }
 
-        public string Type { get; set; }
+        public BeerStyle Type { get; set; }
 
-
+        public string Description { get; set; }
     }
 }
