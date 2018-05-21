@@ -1,4 +1,4 @@
-﻿@model BrewOS.Models.User
+﻿@model BrewOS.Models.UserAccounts.User
 
 @{
     ViewData["Title"] = "Sign-In";
@@ -16,19 +16,19 @@
         <tr>
             <td>Name: </td>
             <td>
-                @Html.TextBoxFor(m => m.name)
+                @Html.TextBoxFor(m => m.ContactInfo.FirstName + m.ContactInfo.LastName)
             </td>
         </tr>
         <tr>
             <td>PhoneNumber: </td>
             <td>
-                @Html.TextBoxFor(m => m.phoneNumber)
+                @Html.TextBoxFor(m => m.ContactInfo.PhoneNumber)
             </td>
         </tr>
         <tr>
             <td>Address: </td>
             <td>
-                @Html.TextBoxFor(m => m.address)
+                @Html.TextBoxFor(m => m.ContactInfo.Address)
             </td>
         </tr>
         @*<tr>

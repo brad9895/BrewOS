@@ -1,6 +1,6 @@
 using System;
 
-namespace VancouverBrewingOS.Models
+namespace BrewOS.Models
 {
     public class ErrorViewModel
     {

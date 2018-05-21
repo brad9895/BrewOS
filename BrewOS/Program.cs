@@ -5,12 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrewOS;
 using BrewOS.Models;
+using BrewOS.Models.UserAccounts;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace VancouverBrewingOS
+namespace BrewOS
 {
     public class Program
     {
@@ -18,12 +19,29 @@ namespace VancouverBrewingOS
         {
 
 
-            using (var db = new BrewOSContext())
+            using (var db = BrewOSContext.Instance)
             {
                 db.Database.EnsureCreated();
-                
+
+                //db.Accounts.Add(new User()
+                //{
+                //    UserID = 1,
+                //    ContactInfo = new ContactInformation()
+                //    {
+                //        UserID = 1,
+                //        LastName = "Mitchell",
+                //        FirstName = "Bradley",
+                //        PhoneNumber = "(716)866-8168"
+                //    },
+                //    PermissionSet = new UserPermissions() { PermissionSetID = "Admin" }
+                //});
+
+                var x = Accounts.Instance;
                 db.SaveChanges();
                 BuildWebHost(args).Run();
+
+                
+
             }
             
         }

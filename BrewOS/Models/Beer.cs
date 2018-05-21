@@ -11,6 +11,8 @@ namespace BrewOS.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int BeerID { get; set; }
+
         public string RecipeName { get; set; }
 
         public double ABV { get; set; }

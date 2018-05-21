@@ -7,5 +7,7 @@ namespace BrewOS.Models
 {
     public class Fermenter
     {
+        public string Name { get; set; }
+        public double Temp { get; set; }
     }
 }
