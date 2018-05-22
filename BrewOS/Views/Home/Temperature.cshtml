@@ -1,4 +1,5 @@
 ﻿@model BrewOS.Controllers.HomeController
+@using BrewOS.Models.Vessels
 
 @{
     ViewData["Title"] = "Temperatures";
@@ -16,7 +17,7 @@
         {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>@Html.DisplayFor(modelItem => item.Temp)</td>
+            <td>@Html.DisplayFor(modelItem => item.TargetTemp)</td>
         </tr>
         }
     </table>

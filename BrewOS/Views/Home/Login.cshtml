@@ -16,8 +16,10 @@
         <tr>
             <td>Name: </td>
             <td>
-                @Html.TextBoxFor(m => m.ContactInfo.FirstName + m.ContactInfo.LastName)
+                @Html.TextBoxFor(m => m.ContactInfo.FirstName)
             </td>
+            <td> </td>
+            <td>@Html.TextBoxFor(m => m.ContactInfo.LastName)</td>
         </tr>
         <tr>
             <td>PhoneNumber: </td>

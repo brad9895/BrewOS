@@ -5,20 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BrewOS.Models
+namespace BrewOS.Models.Beers
 {
-    public class Beer
+    public class BeerStyle
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BeerID { get; set; }
-
-        public string RecipeName { get; set; }
-
-        public double ABV { get; set; }
-
-        public BeerStyle Type { get; set; }
-
-        public string Description { get; set; }
+        public string StyleName { get; set; }
     }
 }

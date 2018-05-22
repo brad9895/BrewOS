@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BrewOS.Models;
 using BrewOS.Models.UserAccounts;
+using BrewOS.Models.Vessels;
 
 namespace BrewOS.Controllers
 {
@@ -38,17 +39,17 @@ namespace BrewOS.Controllers
             Fermenter ferm1 = new Fermenter
             {
                 Name = "test_ferm1",
-                Temp = 65
+                TargetTemp = 65
             };
             Fermenter ferm2 = new Fermenter
             {
                 Name = "test_ferm2",
-                Temp = 65
+                TargetTemp = 65
             };
             Fermenter ferm3 = new Fermenter
             {
                 Name = "test_ferm3",
-                Temp = 65
+                TargetTemp = 65
             };
             List<Fermenter> ferms = new List<Fermenter> { ferm1, ferm2, ferm3 };
             ViewData["Message"] = ferms;

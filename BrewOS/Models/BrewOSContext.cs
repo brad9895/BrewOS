@@ -1,5 +1,7 @@
 ﻿using BrewOS.Models;
+using BrewOS.Models.Beers;
 using BrewOS.Models.UserAccounts;
+using BrewOS.Models.Vessels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +16,9 @@ namespace BrewOS.Models
         public DbSet<BeerStyle>         Styles          { get; set; }
         public DbSet<User>              Accounts        { get; set; }
         public DbSet<UserPermissions>   PermissionSets  { get; set; }
+
+        public DbSet<Fermenter>         Fermenters      { get; set; }
+        public DbSet<Dispenser>         Dispensers      { get; set; }
 
         private BrewOSContext()
         {

@@ -4,6 +4,6 @@ namespace BrewOS.Models
 {
     public interface IDBContext
     {
-        DbSet<Beer> Brews { get; set; }
+        //DbSet<Beer> Brews { get; set; }
     }
 }
