@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Drawing;
 using BrewOS;
 using BrewOS.Models;
 using BrewOS.Models.UserAccounts;
@@ -17,8 +18,7 @@ namespace BrewOS
     {
         public static void Main(string[] args)
         {
-
-
+            
             using (var db = BrewOSContext.Instance)
             {
                 db.Database.EnsureCreated();

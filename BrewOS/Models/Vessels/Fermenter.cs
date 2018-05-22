@@ -16,6 +16,7 @@ namespace BrewOS.Models.Vessels
         public int BeerID { get; set; }
         public Beer Wort { get; set; }
 
+        
 
     }
 }
