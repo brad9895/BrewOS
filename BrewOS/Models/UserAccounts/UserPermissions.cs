@@ -10,5 +10,7 @@ namespace BrewOS.Models.UserAccounts
     {
         [Key]
         public String PermissionSetID { set; get; }
+
+        public bool IsAdmin { get; set; }
     }
 }

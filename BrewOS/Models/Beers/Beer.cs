@@ -17,8 +17,9 @@ namespace BrewOS.Models.Beers
         public Recipe _Recipe { get; set; }
 
         public double ABV { get; set; }
-
-        public BeerStyle Type { get; set; }
+        
+        public double InitalGravity { get; set; }
+        public double FinalGravity { get; set; }
 
         public string Description { get; set; }
     }

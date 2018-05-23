@@ -12,5 +12,8 @@ namespace BrewOS.Models.Beers
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string StyleName { get; set; }
+
+        public string StyleDescription { get; set; }
+        public string StyleImage { get; set; }
     }
 }

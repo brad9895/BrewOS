@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Device.Location;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace BrewOS.Models.UserAccounts
 {
@@ -15,13 +17,13 @@ namespace BrewOS.Models.UserAccounts
         public string FirstName { get; set; }
 
         public string PhoneNumber { get; set; }
-        //[ForeignKey("AreaCode,Prefix,Extension")]
-        //public PhoneNumber Phone { get; set; }
-        public string Address { get; set; }
+        
+        [ForeignKey("AddressLine1,City,StateProvince,PostalCode")]
+        public CivicAddress Address { get; set; }
 
         public ContactInformation()
         {
-
+           
         }
         
     }

@@ -12,7 +12,7 @@ namespace BrewOS.Models.UserAccounts
         public int UserID { get; set; }
         public ContactInformation ContactInfo { get; set; }
 
-
+        public string PermissonSetID { get; set; }
         public UserPermissions PermissionSet { get; set; }
     }
 }

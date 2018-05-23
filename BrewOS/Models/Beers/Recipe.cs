@@ -11,6 +11,9 @@ namespace BrewOS.Models.Beers
         [Key]
         public string RecipeName { get; set; }
 
+        public string StyleName { get; set; }
+        public BeerStyle Style { get; set; }
 
+        public double TargetGravity { get; set; }
     }
 }

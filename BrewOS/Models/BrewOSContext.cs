@@ -5,6 +5,7 @@ using BrewOS.Models.Vessels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Device.Location;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -34,7 +35,8 @@ namespace BrewOS.Models
         {
             modelBuilder.Entity<PhoneNumber>()
                 .HasKey(c => new { c.AreaCode, c.Prefix, c.Extension });
-            
+            modelBuilder.Entity<CivicAddress>()
+                .HasKey(c => new { c.AddressLine1, c.City, c.StateProvince, c.PostalCode });
         }
 
         private static BrewOSContext _Instance = null;

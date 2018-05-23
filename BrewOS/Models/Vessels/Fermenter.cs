@@ -1,4 +1,5 @@
 ﻿using BrewOS.Models.Beers;
+using BrewOS.Models.Sensors.TemperatureSensors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,7 +17,8 @@ namespace BrewOS.Models.Vessels
         public int BeerID { get; set; }
         public Beer Wort { get; set; }
 
-        
+        public string SensorID { get; set; }
+        public TemperatureSensor TempSensor { get; set; }
 
     }
 }
