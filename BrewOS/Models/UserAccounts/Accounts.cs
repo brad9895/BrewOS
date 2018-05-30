@@ -1,4 +1,5 @@
-﻿using BrewOS.Models.UserAccounts;
+﻿using BrewOS.Data;
+using BrewOS.Models.UserAccounts;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

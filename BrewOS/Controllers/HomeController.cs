@@ -59,7 +59,7 @@ namespace BrewOS.Controllers
 
         public IActionResult Login()
         {
-            ViewData["Message"] = "Scan your QR code.";
+            //ViewData["Message"] = "Scan your QR code.";
 
             return View();
         }
@@ -67,7 +67,7 @@ namespace BrewOS.Controllers
         [HttpPost]
         public IActionResult Login(User scannedUser)
         {
-            ViewData["Message"] = "Scan your QR code.";
+            //ViewData["Message"] = "Scan your QR code.";
 
             return View();
         }

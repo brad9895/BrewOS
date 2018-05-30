@@ -1,4 +1,5 @@
-﻿using BrewOS.Models;
+﻿using BrewOS.Data;
+using BrewOS.Models;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 

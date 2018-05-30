@@ -1,0 +1,24 @@
+﻿@model BrewOS.Controllers.HomeController
+@using BrewOS.Models.Vessels
+
+@{
+    ViewData["Title"] = "Temperatures";
+    var data = (List<Fermenter>)ViewData["Message"];
+}
+
+<h2>Temp</h2>
+@using (Html.BeginForm("Temperature", "Home"))
+{
+    <table cellpadding="0" cellspacing="0">
+    <tr>
+        <th colspan="2" align="center">Fermenter Temperatures</th>
+    </tr>
+        @foreach (var item in data)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+            <td>@Html.DisplayFor(modelItem => item.TargetTemp)</td>
+        </tr>
+        }
+    </table>
+ }
