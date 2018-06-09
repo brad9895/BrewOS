@@ -1,4 +1,5 @@
 ﻿using BrewOS.Models.Beers;
+using BrewOS.Models.Sensors.TemperatureSensors;
 using BrewOS.Models.UserAccounts;
 using BrewOS.Models.Vessels;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace BrewOS.Data
         public DbSet<BeerStyle>         Styles          { get; set; }
         public DbSet<User>              Accounts        { get; set; }
         public DbSet<UserPermissions>   PermissionSets  { get; set; }
+        public DbSet<TemperatureSensor> Sensors         { get; set; }
 
         public DbSet<Fermenter>         Fermenters      { get; set; }
         public DbSet<Dispenser>         Dispensers      { get; set; }
@@ -35,10 +37,10 @@ namespace BrewOS.Data
 
         public static BrewOSContext Instance
         {
-            get { return _Instance != null ? _Instance : createInstance(); }
+            get { return _Instance != null ? _Instance : CreateInstance(); }
         }
 
-        private static BrewOSContext createInstance()
+        private static BrewOSContext CreateInstance()
         {
             return new BrewOSContext();
         }

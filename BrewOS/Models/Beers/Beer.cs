@@ -18,9 +18,16 @@ namespace BrewOS.Models.Beers
 
         public double ABV { get; set; }
         
+        public DateTime BrewDate { get; set; }
+        public DateTime RackDate { get; set; }
+
+        public DateTime KegDate { get; set; }
+
         public double InitalGravity { get; set; }
         public double FinalGravity { get; set; }
 
         public string Description { get; set; }
+
+
     }
 }

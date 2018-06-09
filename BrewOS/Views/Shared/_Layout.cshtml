@@ -30,12 +30,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">On Tap</a></li>
-                    <li><a asp-area="" asp-controller="Fermenters" asp-action="Index">Fermenters</a></li>
+                    <li><a asp-area="" asp-controller="Home"        asp-action="Index">On Tap</a></li>
+                    <li><a asp-area="" asp-controller="Fermenters"  asp-action="Index">Fermenters</a></li>
+
                     @*<li><a asp-area="" asp-controller="Home" asp-action="Contact">In Progress</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>*@
-                    <li><a asp-area="" asp-controller="Home" asp-action="Temperature">Temperature</a></li>
-                    <li class="dropdown">
+                    <li><a asp-area="" asp-controller="Settings" asp-action="Index">Settings</a></li>
+                    @*<li class="dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
                         <div class="dropdown-menu" style="padding: 5px; padding-bottom: 5px;">
                             <form method="post" action='@Url.Action("Login")' accept-charset="UTF-8">
@@ -47,7 +48,7 @@
                                 <input class="btn btn-primary btn-block" type="submit" id="sign-in" value="Register">
                             </form>
                         </div>
-                    </li>
+                    </li>*@
                 </ul>
             </div>
         </div>
