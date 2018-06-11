@@ -10,9 +10,9 @@ namespace BrewOS
         public static void Main(string[] args)
         {
             
-            using (var db = BrewOSContext.Instance)
-            {
-                db.Database.EnsureCreated();
+            //using (var context = BrewOSContext.Instance)
+            //{
+            //    context.Database.EnsureCreated();
 
                 //db.Accounts.Add(new User()
                 //{
@@ -27,13 +27,14 @@ namespace BrewOS
                 //    PermissionSet = new UserPermissions() { PermissionSetID = "Admin" }
                 //});
 
-                var x = Accounts.Instance;
-                db.SaveChanges();
+            //    var x = Accounts.Instance;
+            //    context.SaveChanges();
+
                 BuildWebHost(args).Run();
 
                 
 
-            }
+            //}
             
         }
 

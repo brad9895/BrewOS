@@ -3,6 +3,8 @@ using BrewOS.Models.Sensors.TemperatureSensors;
 using BrewOS.Models.UserAccounts;
 using BrewOS.Models.Vessels;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BrewOS.Data
 {
@@ -17,32 +19,46 @@ namespace BrewOS.Data
         public DbSet<Fermenter>         Fermenters      { get; set; }
         public DbSet<Dispenser>         Dispensers      { get; set; }
 
-        public BrewOSContext()
+        public BrewOSContext(DbContextOptions<BrewOSContext> options) : base(options)
         {
+            this.Database.EnsureCreated();
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder//.UseLazyLoadingProxies()
-                .UseSqlite("Data Source=BrewOS.db");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder//.UseLazyLoadingProxies()
+        //        .UseSqlite("Data Source=BrewOS.db");
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PhoneNumber>()
-                .HasKey(c => new { c.AreaCode, c.Prefix, c.Extension });
+            //this.EnsureCreated();
+            //modelBuilder.Entity<TemperatureSensor>().ToTable("TemperatureSensor");
+            //modelBuilder.Entity<PhoneNumber>()
+            //    .HasKey(c => new { c.AreaCode, c.Prefix, c.Extension });
         }
 
-        private static BrewOSContext _Instance = null;
+        //private static BrewOSContext _Instance = null;
 
-        public static BrewOSContext Instance
+        //public static BrewOSContext Instance
+        //{
+        //    get { return _Instance != null ? _Instance : CreateInstance(); }
+        //}
+
+        //private static BrewOSContext CreateInstance()
+        //{
+        //    return new BrewOSContext();
+        //}
+
+        public async Task<List<TemperatureSensor>> GetKnownSensors()
         {
-            get { return _Instance != null ? _Instance : CreateInstance(); }
+            var sensors = await this.Sensors
+                .Include(s => s.Sensor)
+                .ToListAsync();
+
+            return sensors;
         }
 
-        private static BrewOSContext CreateInstance()
-        {
-            return new BrewOSContext();
-        }
+
     }
 }

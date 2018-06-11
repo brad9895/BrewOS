@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 
@@ -7,11 +8,14 @@ namespace OneWire
 {
     public abstract class OneWireDevice : INotifyPropertyChanged
     {
+        [Key]
+        public string Address { get; protected set; }
+
         private const string _OneWireDir = "//sys//bus//w1//devices";
 
         public DeviceType Type { get; private set; }
 
-        public string Address { get; protected set; }
+        
 
         public bool Available { get; protected set; }
 

@@ -8,6 +8,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using BrewOS.Models;
+using BrewOS.Data;
+using OneWire;
+using BrewOS.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace BrewOS
 {
@@ -15,6 +19,7 @@ namespace BrewOS
     {
         public Startup(IConfiguration configuration)
         {
+            OneWireBus.InitializeBus(2000);
             Configuration = configuration;
         }
 
@@ -23,7 +28,12 @@ namespace BrewOS
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BrewOSContext>(options =>
+                options.UseSqlite("Data Source=BrewOS.db"));
+
             services.AddMvc();
+
+            services.AddSignalR(options => options.EnableDetailedErrors = true);
             
         }
 
@@ -40,7 +50,13 @@ namespace BrewOS
                 app.UseExceptionHandler("/Home/Error");
             }
 
+ 
             app.UseStaticFiles();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<TemperatueHub>("/temperatureHub");
+            });
 
             app.UseMvc(routes =>
             {

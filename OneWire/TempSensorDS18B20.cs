@@ -38,6 +38,11 @@ namespace OneWire
 
         public event EventHandler TemperatureUpdated;
 
+        public TempSensorDS18B20() : base(DeviceType.DS18B20)
+        {
+
+        }
+
         public TempSensorDS18B20(string address) : base(DeviceType.DS18B20)
         {
             this.Address = address;

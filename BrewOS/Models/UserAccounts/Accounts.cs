@@ -18,10 +18,10 @@ namespace BrewOS.Models
 
         private Accounts()
         {
-            var x = BrewOSContext.Instance;
+            //var x = BrewOSContext.Instance;
 
-            Users = x.Accounts.Include(y => y.ContactInfo)
-                .Include(y => y.PermissionSet).ToList();
+            //Users = x.Accounts.Include(y => y.ContactInfo)
+            //    .Include(y => y.PermissionSet).ToList();
 
             
         }

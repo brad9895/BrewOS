@@ -14,10 +14,10 @@ namespace BrewOS.Models.Vessels
 
         private Vessels()
         {
-            var context = BrewOSContext.Instance;
+            //var context = BrewOSContext.Instance;
 
-            Dispensers = context.Dispensers.Include(x => x.OnTap).ToList();
-            Fermenters = context.Fermenters.Include(x => x.Wort).ToList();
+            //Dispensers = context.Dispensers.Include(x => x.OnTap).ToList();
+            //Fermenters = context.Fermenters.Include(x => x.Wort).ToList();
 
         }
 

@@ -22,16 +22,41 @@ namespace OneWire
             }
         }
 
+        private static int _UpdateFrequency = 2000;
+        public static int UpdateFrequency
+        {
+            get { return _UpdateFrequency; }
+            set
+            {
+                _UpdateFrequency = value;
+            }
+        }
+
         public event EventHandler<DeviceAddedEvent> DeviceAdded;
+        public event EventHandler UpdateCycleComplete;
 
         private OneWireDeviceFactory _Factory = OneWireDeviceFactory.Instance;
 
+        public object DeviceLock = new object();
+
         public List<OneWireDevice> _Devices = new List<OneWireDevice>();
         public List<OneWireDevice> Devices { get { return this._Devices; }}
+        
+
 
         private OneWireBus()
         {
             this.readLoopAsync();
+        }
+
+        public static void InitializeBus(int updateFrequency = 2000)
+        {
+            if (updateFrequency > 0)
+                UpdateFrequency = updateFrequency;
+
+            if (Instance == null)
+                _Instance = new OneWireBus();
+
         }
 
         private async void readLoopAsync()
@@ -45,8 +70,9 @@ namespace OneWire
             {
                 this.readSensors();
 
+                this.UpdateCycleCompleted();
 
-                Thread.Sleep(2000);
+                Thread.Sleep(_UpdateFrequency);
             }
         }
 
@@ -63,9 +89,12 @@ namespace OneWire
                 {
                     if (!this._Devices.Where(x => x.Address.Equals(address)).Any())
                     {
-                        var device = _Factory.CreateDevice(address);
-                        this._Devices.Add(device);
-                        this.DeviceAddedToBus(device);
+                        lock (DeviceLock)
+                        {
+                            var device = _Factory.CreateDevice(address);
+                            this._Devices.Add(device);
+                            this.DeviceAddedToBus(device);
+                        }
                     }
                 }
 
@@ -92,6 +121,12 @@ namespace OneWire
             if (DeviceAdded != null)
                 DeviceAdded(this, new DeviceAddedEvent(device));
         }
+        private void UpdateCycleCompleted()
+        {
+            if (UpdateCycleComplete != null)
+                UpdateCycleComplete(this, new EventArgs());
+        }
+
     }
 
     public class DeviceAddedEvent : EventArgs
