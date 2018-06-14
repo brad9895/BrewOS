@@ -8,7 +8,7 @@ namespace OneWire
 {
     public abstract class OneWireDevice : INotifyPropertyChanged
     {
-        [Key]
+       // [Key]
         public string Address { get; protected set; }
 
         private const string _OneWireDir = "//sys//bus//w1//devices";

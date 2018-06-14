@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace BrewOS.Hubs
 {
-    public class TemperatueHub : Hub
+    public class TemperatueHubService
     {
 
         private OneWireBus _Bus = OneWireBus.Instance;
 
         //private BrewOSContext _Context;
-
-        public TemperatueHub() : base()
+        private IHubContext<TemperatueHub> _hubContext;
+        public TemperatueHubService(IHubContext<TemperatueHub> hubContext)
         {
+            _hubContext = hubContext;
             //this._Context = context;
-
-            //this._Bus.UpdateCycleComplete   += Bus_UpdateCycleCompleteAsync;
+            
+            this._Bus.UpdateCycleComplete   += Bus_UpdateCycleCompleteAsync;
             //this._Bus.DeviceAdded           += Bus_DeviceAdded;
         }
 
@@ -31,26 +32,29 @@ namespace BrewOS.Hubs
 
         private void Bus_UpdateCycleCompleteAsync(object sender, EventArgs e)
         {
-            //this.UpdateTemps();
+            this.UpdateTemps();
         }
 
-        
-        //private async Task UpdateTemps()
-        //{
+        private void UpdateTemps()
+        {
             //List<Task> taskList = new List<Task>();
 
             //lock (_Bus.DeviceLock)
             //{
-          //      foreach (var sensor in _Bus.Devices.Where(x => x.Type == DeviceType.DS18B20).Select(x => x as TempSensorDS18B20).ToList())
-            //    {
-            //        Console.WriteLine("Sending Temp");
-            //        await Clients.All.SendAsync("UpdateSettingsTemperature", sensor.Address, sensor.TempF, sensor.Available);
-            //    }
+                foreach (var sensor in _Bus.Devices.Where(x => x.Type == DeviceType.DS18B20).Select(x => x as TempSensorDS18B20).ToList())
+                {
+                    Console.WriteLine("Sending Temp");
+                
+                    this._hubContext
+                    .Clients
+                    .All
+                    .SendAsync("Message", sensor.Address, sensor.TempF.ToString(), sensor.Available).Wait();//, sensor.Available.ToString());
+                }
     
             //}
 
             //await Task.WhenAll(taskList);
-        //}
+        }
 
         //protected override void Dispose(bool disposing)
         //{
@@ -59,8 +63,8 @@ namespace BrewOS.Hubs
         //    this._Bus.UpdateCycleComplete -= Bus_UpdateCycleCompleteAsync;
         //    //this._Bus.DeviceAdded -= Bus_DeviceAdded;
 
-//            base.Dispose(disposing);
-//        }
+        //    base.Dispose(disposing);
+        //}
 
         
         //private async void AddDevice(TempSensorDS18B20 sensor)

@@ -14,7 +14,6 @@ namespace OneWire
         
         private double _TempC;
         
-
         public double TempC
         {
             get

@@ -32,6 +32,9 @@ namespace BrewOS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<TemperatureSensor>()
+            //    .HasOne(a => a.Sensor).WithOne(x => x.Address);
+                
             //this.EnsureCreated();
             //modelBuilder.Entity<TemperatureSensor>().ToTable("TemperatureSensor");
             //modelBuilder.Entity<PhoneNumber>()
@@ -53,7 +56,6 @@ namespace BrewOS.Data
         public async Task<List<TemperatureSensor>> GetKnownSensors()
         {
             var sensors = await this.Sensors
-                .Include(s => s.Sensor)
                 .ToListAsync();
 
             return sensors;

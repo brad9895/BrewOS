@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BrewOS.Data;
+using BrewOS.Hubs;
 using BrewOS.Models.Sensors.TemperatureSensors;
 using Microsoft.AspNetCore.Mvc;
 using OneWire;
@@ -16,7 +17,7 @@ namespace BrewOS.Controllers
 
         private OneWireBus Bus = OneWireBus.Instance;
 
-        public SettingsController(BrewOSContext context)
+        public SettingsController(BrewOSContext context, TemperatueHubService hubService)
         {
             _context = context;
 

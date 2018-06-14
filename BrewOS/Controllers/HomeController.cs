@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using BrewOS.Models;
 using BrewOS.Models.UserAccounts;
 using BrewOS.Models.Vessels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BrewOS.Controllers
 {

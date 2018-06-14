@@ -22,7 +22,7 @@ namespace OneWire
             }
         }
 
-        private static int _UpdateFrequency = 2000;
+        private static int _UpdateFrequency = 3000;
         public static int UpdateFrequency
         {
             get { return _UpdateFrequency; }
@@ -49,7 +49,7 @@ namespace OneWire
             this.readLoopAsync();
         }
 
-        public static void InitializeBus(int updateFrequency = 2000)
+        public static void InitializeBus(int updateFrequency = 3000)
         {
             if (updateFrequency > 0)
                 UpdateFrequency = updateFrequency;
