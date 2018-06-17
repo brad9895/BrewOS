@@ -10,18 +10,21 @@ namespace BrewOS.Data
 {
     public class BrewOSContext : DbContext
     {
-        public DbSet<Beer>              Brews           { get; set; }
-        public DbSet<BeerStyle>         Styles          { get; set; }
-        public DbSet<User>              Accounts        { get; set; }
-        public DbSet<UserPermissions>   PermissionSets  { get; set; }
+        //public DbSet<Beer>              Brews           { get; set; }
+        //public DbSet<BeerStyle>         Styles          { get; set; }
+        //public DbSet<User>              Accounts        { get; set; }
+        //public DbSet<UserPermissions>   PermissionSets  { get; set; }
         public DbSet<TemperatureSensor> Sensors         { get; set; }
 
-        public DbSet<Fermenter>         Fermenters      { get; set; }
-        public DbSet<Dispenser>         Dispensers      { get; set; }
+        //public DbSet<Fermenter>         Fermenters      { get; set; }
+        //public DbSet<Dispenser>         Dispensers      { get; set; }
 
         public BrewOSContext(DbContextOptions<BrewOSContext> options) : base(options)
         {
             this.Database.EnsureCreated();
+
+            
+
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -32,8 +35,11 @@ namespace BrewOS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
+
+
             //modelBuilder.Entity<TemperatureSensor>()
-            //    .HasOne(a => a.Sensor).WithOne(x => x.Address);
+            //    .HasOne(a => a.Sensor);//.WithOne>.WithOne(x => x.Address);
                 
             //this.EnsureCreated();
             //modelBuilder.Entity<TemperatureSensor>().ToTable("TemperatureSensor");

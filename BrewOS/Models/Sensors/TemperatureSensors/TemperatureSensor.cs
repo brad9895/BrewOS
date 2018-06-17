@@ -11,7 +11,6 @@ namespace BrewOS.Models.Sensors.TemperatureSensors
     public class TemperatureSensor : ISensor
     {
         
-        
         [Key]
         public string Address { get; set; }
         public string Name { get; set; }
@@ -21,7 +20,7 @@ namespace BrewOS.Models.Sensors.TemperatureSensors
         
         public TemperatureSensor()
         {
-
+            Sensor = new TempSensorDS18B20();
         }
         public TemperatureSensor(TempSensorDS18B20 sensor)
         {

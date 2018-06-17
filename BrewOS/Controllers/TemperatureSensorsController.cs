@@ -78,7 +78,11 @@ namespace BrewOS.Controllers
             var temperatureSensor = await _context.Sensors.SingleOrDefaultAsync(m => m.Address == id);
             if (temperatureSensor == null)
             {
-                return NotFound();
+                temperatureSensor = new TemperatureSensor() { Address = id };
+                _context.Sensors.Add(temperatureSensor);
+                await _context.SaveChangesAsync();
+
+                //return NotFound();
             }
             return View(temperatureSensor);
         }
@@ -99,13 +103,19 @@ namespace BrewOS.Controllers
             {
                 try
                 {
-                    _context.Update(temperatureSensor);
-                    await _context.SaveChangesAsync();
+                    var sensor = await _context.Sensors.SingleOrDefaultAsync(x => x.Address == id);
+
+                    if (sensor != null)
+                    {
+                        sensor.Name = temperatureSensor.Name;
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!TemperatureSensorExists(temperatureSensor.Address))
                     {
+                        
                         return NotFound();
                     }
                     else
@@ -113,7 +123,7 @@ namespace BrewOS.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index),"Settings");
             }
             return View(temperatureSensor);
         }
@@ -144,7 +154,7 @@ namespace BrewOS.Controllers
             var temperatureSensor = await _context.Sensors.SingleOrDefaultAsync(m => m.Address == id);
             _context.Sensors.Remove(temperatureSensor);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index),"Settings");
         }
 
         private bool TemperatureSensorExists(string id)

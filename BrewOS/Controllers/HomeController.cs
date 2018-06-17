@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BrewOS.Data;
+using BrewOS.Hubs;
 using BrewOS.Models;
 using BrewOS.Models.UserAccounts;
 using BrewOS.Models.Vessels;
 using Microsoft.AspNetCore.Mvc;
+using OneWire;
 
 namespace BrewOS.Controllers
 {
@@ -14,9 +17,47 @@ namespace BrewOS.Controllers
     {
         //public List<string> test = new List<string>() { "1", "2", "3", "4" };
 
+        public List<Card> cards = new List<Card>()
+        {
+            new OnTapCard()
+            {
+                name = "Test One",
+                style = "Test Style",
+                image="./images/BeerImages/amber-ale.jpg",
+                onTapName ="One",
+                abv = "5",
+                description = "sf;lkjgl"
+
+            },
+            new FermenterCard()
+            {
+                name = "Test One",
+                style = "Test Style",
+                fermenterName = "F1",
+                actualTemp = 70,
+                targetTemp = 65,
+                initialGravity = 1.065,
+                brewDate = "Now",
+                estCompletionDate = "Unknown"
+            }
+
+        };
+
+        private BrewOSContext _context;
+        private TemperatueHubService _service;
+        private OneWireBus _bus = OneWireBus.Instance;
+
+        public HomeController(BrewOSContext context, TemperatueHubService service)
+        {
+            _context = context;
+            _service = service;
+
+        }
+
         public IActionResult Index()
         {
-            return View();
+            //return View();
+            return View(cards);
         }
 
         public IActionResult About()
@@ -36,24 +77,7 @@ namespace BrewOS.Controllers
         
         public IActionResult Temperature()
         {
-            Fermenter ferm1 = new Fermenter
-            {
-                Name = "test_ferm1",
-                TargetTemp = 65
-            };
-            Fermenter ferm2 = new Fermenter
-            {
-                Name = "test_ferm2",
-                TargetTemp = 65
-            };
-            Fermenter ferm3 = new Fermenter
-            {
-                Name = "test_ferm3",
-                TargetTemp = 65
-            };
-            List<Fermenter> ferms = new List<Fermenter> { ferm1, ferm2, ferm3 };
-            ViewData["Message"] = ferms;
-
+            
             return View();
         }
 

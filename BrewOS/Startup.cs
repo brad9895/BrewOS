@@ -1,5 +1,6 @@
 ﻿using BrewOS.Data;
 using BrewOS.Hubs;
+using BrewOS.Models.Sensors.TemperatureSensors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -79,6 +80,9 @@ namespace BrewOS
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                    //.MapRoute(
+                    //name :"settings",
+                    //template: "{controller}/{action}/{id}");
             });
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -96,6 +100,15 @@ namespace BrewOS
 
                 await next();
             });
+
+            app.ApplicationServices.GetService<TemperatueHubService>();
+
+            //var _context = app.ApplicationServices.GetService<BrewOSContext>();
+
+            
+
         }
     }
+
+
 }

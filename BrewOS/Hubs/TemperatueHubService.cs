@@ -1,10 +1,7 @@
-﻿using BrewOS.Data;
-using Microsoft.AspNetCore.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 using OneWire;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BrewOS.Hubs
 {
@@ -43,7 +40,7 @@ namespace BrewOS.Hubs
             //{
                 foreach (var sensor in _Bus.Devices.Where(x => x.Type == DeviceType.DS18B20).Select(x => x as TempSensorDS18B20).ToList())
                 {
-                    Console.WriteLine("Sending Temp");
+                    //Console.WriteLine("Sending Temp");
                 
                     this._hubContext
                     .Clients

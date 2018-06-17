@@ -17,7 +17,7 @@ namespace BrewOS.Models.Vessels
         public int BeerID { get; set; }
         public Beer Wort { get; set; }
 
-        public string SensorID { get; set; }
+        public string Address { get; set; }
         public TemperatureSensor TempSensor { get; set; }
 
     }

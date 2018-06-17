@@ -1,7 +1,7 @@
 ﻿@model List<BrewOS.Models.Sensors.TemperatureSensors.TemperatureSensor>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Settings Page";
 }
 
 <div>
@@ -9,16 +9,29 @@
     <h2>Sensor Bindings</h2>
 
 
-    <table class="table">
+    <table class="table" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Last Read Temperature</th>
+                <th>Available</th>
+                <th></th>
+            </tr>
+        </thead>
         <tbody id="TempTable">
-            @foreach (var device in Model)
+            @foreach (var device in Model.Where(x => x.Sensor != null))
             {
+                
             <tr id=@device.Address>
+                @using (Html.BeginForm("Update", "Settings", FormMethod.Post))
+                {
                 <td class="SensorName">
                     @Html.DisplayFor(modelitem => device.Name)
                 </td>
                 <td class="SensorAddress">
                     @Html.DisplayFor(modelitem => device.Address)
+                    @Html.HiddenFor(modelitem => device.Address)
                 </td>
                 <td class="SensorTemp">
                     @Html.DisplayFor(modelitem => device.Sensor.TempF)
@@ -26,6 +39,20 @@
                 <td class="SensorAvailable">
                     @Html.DisplayFor(modelitem => device.Sensor.Available)
                 </td>
+                <td>
+                    <a asp-controller="TemperatureSensors"
+                       asp-action="Edit"
+                       asp-route-id="@device.Address">Edit</a> |
+                    @if (!string.IsNullOrWhiteSpace(device.Name))
+                        {
+                            <a asp-controller="TemperatureSensors"
+                                asp-action="Delete"
+                                asp-route-id="@device.Address">Delete</a>
+                        }
+                        
+                </td>
+                
+                }
             </tr>
 
             }
@@ -34,4 +61,4 @@
 </div>
 
 <script src="~/lib/signalr/signalr.js"></script>
-<script src="~/js/temps.js"></script>
+<script src="~/js/settingsTemps.js"></script>
