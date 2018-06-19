@@ -1,0 +1,45 @@
+﻿@model BrewOS.Models.Vessels.Fermenter
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Fermenter</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TargetTemp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TargetTemp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Wort)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Wort.BeerID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TempSensor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TempSensor.Address)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="FermenterID" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -16,7 +16,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 console.log("Script Start");
 
-debugger;
+//debugger;
 
 connection.on("Message", (Address, Temperature, Available) => {
 
@@ -25,42 +25,17 @@ connection.on("Message", (Address, Temperature, Available) => {
 
     tr = document.getElementById(Address);
     
-    debugger;
-    if (tr == null) {
-        tbody = document.getElementById("TempTable");
+    //debugger;
+    if (tr != null) {
+        tr.value = Temperature;
 
-        var newRow = document.createElement("tr");
-        tr.id = Address;
-        debugger;
-        var name = document.createElement("td");
-        name.className = "SensorName";
-        name.textContent = "";
-
-        var address_node = document.createElement("td");
-        address_node.className = "SensorAddress";
-        address_node.textContent = Address;
-        debugger;
-        var temp = document.createElement("td");
-        temp.className = SensorTemp;
-        name.textContent = Temberature;
-
-        var available_node = document.createElement("td");
-        available_node.className = "SensorAvailable";
-        available_node.textContent = Available;
-
-        newRow.appendChild(name);
-        newRow.appendChild(address_node);
-        newRow.appendChild(temp);
-        newRow.appendChild(available_node);
-        debugger;
-        tbody.appendChild(newRow);
+        if (Available)
+            tr.style.color = "green";
+        else
+            tr.style.color = "red";
+        
     }
-    else {
-        tr.getElementsByClassName("SensorTemp")[0].textContent = Temperature;
-        tr.getElementsByClassName("SensorAvailable")[0].value = Boolean(Available);
-        debugger;
-    }
-
+    
 });
 
 

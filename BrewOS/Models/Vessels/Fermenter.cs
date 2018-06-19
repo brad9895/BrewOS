@@ -11,6 +11,8 @@ namespace BrewOS.Models.Vessels
     public class Fermenter
     {
         [Key]
+        public int FermenterID { get; set; }
+
         public string Name { get; set; }
         public double TargetTemp { get; set; }
 
@@ -19,6 +21,13 @@ namespace BrewOS.Models.Vessels
 
         public string Address { get; set; }
         public TemperatureSensor TempSensor { get; set; }
+
+
+        public Fermenter()
+        {
+            Wort = new Beer();
+            TempSensor = new TemperatureSensor();
+        }
 
     }
 }

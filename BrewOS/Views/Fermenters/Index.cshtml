@@ -1,47 +1,70 @@
-﻿@model IEnumerable<BrewOS.Models.Vessels.Fermenter>
+﻿@model List<BrewOS.Models.Vessels.Fermenter>
 
 @{
-    ViewData["Title"] = "Index";
-}
+    ViewData["Title"] = "Fermenters";
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.TargetTemp)
-                </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TempSensor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Wort)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TargetTemp)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TempSensor.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Wort.BeerID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Name">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Name">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Name">Delete</a>
-            </td>
-        </tr>
 }
-    </tbody>
-</table>
+<div class="container">
+    <div class="well">Fermenters</div>
+
+
+
+    <div class="row">
+        @foreach (var ferm in Model)
+        {
+
+            <div class="col-sm-4" style="border-radius: 5px; border:groove">
+                <div class="well-sm" align="center" style="border-bottom:groove">
+                    @ferm.Name
+                </div>
+                <!--span class="glyphicon glyphicon-apple glyphicon-align-center"></!--span>-->
+                <table class="table table-responsive table-hover" id="tblCard">
+                    <tr>
+                        <td align="center" valign="middle">
+                            <img src=@ferm.Wort._Recipe.Style.StyleImage class="center" width="100" height="100">
+                        </td>
+                        <td>
+                            <table class="table table-responsive table-hover" align="center" width="100" id="tblCard">
+                                <tr>
+                                    <th colspan="2" style="text-align:center">@ferm.Wort.RecipeName</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="2" align="center">@ferm.Wort._Recipe.StyleName</th>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Actual Temp</th>
+                                    <td colspan="1" align="right" id="@ferm.TempSensor.Address">@ferm.TempSensor.Sensor.TempF</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Target Temp</th>
+                                    <td colspan="1" align="right">@ferm.TargetTemp</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Inital Gravity</th>
+                                    <td colspan="1" align="right">@ferm.Wort.InitalGravity</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Brew Date</th>
+                                    <td colspan="1" align="right">@ferm.Wort.BrewDate</td>
+                                </tr>
+                                <tr>
+                                    <th colspan="1">Est. Comp. Date</th>
+                                    <td colspan="1" align="right">@ferm.Wort.KegDate</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        }
+    </div>
+
+    <p>
+        <a asp-action="Create">New</a>
+    </p>
+</div>
+
+
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/fermentersTemps.js"></script>

@@ -14,6 +14,8 @@ namespace BrewOS.Models.Beers
         public int BeerID { get; set; }
 
         public string RecipeName { get; set; }
+
+        public int RecipeID { get; set; }
         public Recipe _Recipe { get; set; }
 
         public double ABV { get; set; }
@@ -28,6 +30,7 @@ namespace BrewOS.Models.Beers
 
         public string Description { get; set; }
 
+        public bool Active { get; set; }
 
     }
 }

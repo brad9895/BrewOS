@@ -1,0 +1,94 @@
+﻿@model BrewOS.Models.Beers.Recipe
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Recipe</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RecipeID" />
+            <div class="form-group">
+                <label asp-for="RecipeName" class="control-label"></label>
+                <input asp-for="RecipeName" class="form-control" />
+                <span asp-validation-for="RecipeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StyleName" class="control-label"></label>
+                <select asp-for="StyleName" class="form-control" asp-items="ViewBag.StyleName"></select>
+                <span asp-validation-for="StyleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TargetGravity" class="control-label"></label>
+                <input asp-for="TargetGravity" class="form-control" />
+                <span asp-validation-for="TargetGravity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MashingTemp" class="control-label"></label>
+                <input asp-for="MashingTemp" class="form-control" />
+                <span asp-validation-for="MashingTemp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SuggestedFermTemp" class="control-label"></label>
+                <input asp-for="SuggestedFermTemp" class="form-control" />
+                <span asp-validation-for="SuggestedFermTemp" class="text-danger"></span>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.GrainBill)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.grain.GrainType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Amount)
+                            </td>
+
+                            <td>
+                                <a asp-controller="GrainRecipeItem"
+                                   asp-action="Edit"
+                                   asp-route-id="@item.ID">Edit</a> |
+                                <a asp-controller="GrainRecipeItem"
+                                   asp-action="Details"
+                                   asp-route-id="@item.ID">Details</a> |
+                                <a asp-controller="GrainRecipeItem"
+                                   asp-action="Delete"
+                                   asp-route-id="@item.ID">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <p>
+                <a asp-controller="GrainRecipeItems" asp-action="Create">Create New</a>
+            </p>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

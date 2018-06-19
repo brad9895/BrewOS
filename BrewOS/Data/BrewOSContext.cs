@@ -10,13 +10,14 @@ namespace BrewOS.Data
 {
     public class BrewOSContext : DbContext
     {
-        //public DbSet<Beer>              Brews           { get; set; }
-        //public DbSet<BeerStyle>         Styles          { get; set; }
+        public DbSet<Beer>              BrewHistory     { get; set; }
+        public DbSet<BeerStyle>         Styles          { get; set; }
+        public DbSet<Recipe>            RecipeCatalog   { get; set; }
         //public DbSet<User>              Accounts        { get; set; }
         //public DbSet<UserPermissions>   PermissionSets  { get; set; }
         public DbSet<TemperatureSensor> Sensors         { get; set; }
 
-        //public DbSet<Fermenter>         Fermenters      { get; set; }
+        public DbSet<Fermenter>         Fermenters      { get; set; }
         //public DbSet<Dispenser>         Dispensers      { get; set; }
 
         public BrewOSContext(DbContextOptions<BrewOSContext> options) : base(options)
@@ -66,6 +67,20 @@ namespace BrewOS.Data
 
             return sensors;
         }
+
+        //private static BrewOSContext _Instance = null;
+
+        //public static BrewOSContext Instance
+        //{
+        //    get { return _Instance != null ? _Instance : CreateInstance(); }
+        //}
+
+        //private static BrewOSContext CreateInstance()
+        //{
+        //    return new BrewOSContext();
+        //}
+
+        public DbSet<BrewOS.Models.Beers.GrainRecipeItem> GrainRecipeItem { get; set; }
 
 
     }

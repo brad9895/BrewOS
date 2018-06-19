@@ -1,10 +1,13 @@
 ﻿using BrewOS.Data;
 using BrewOS.Models;
+using BrewOS.Models.Beers;
 using BrewOS.Models.Sensors.TemperatureSensors;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Globalization;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace BrewOS
@@ -80,6 +83,30 @@ namespace BrewOS
                 };
                 context.Sensors.Add(item);
                 await context.SaveChangesAsync();
+            }
+
+            if (! await context.Styles.AnyAsync())
+            {
+                var styleImages = Directory.GetFiles("./wwwroot/images/BeerImages/");
+
+                
+
+                TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+
+                foreach (var styleImage in styleImages)
+                {
+                    string style = textInfo.ToTitleCase(Path.GetFileNameWithoutExtension(styleImage).Replace('-', ' '));
+
+                    var beerStyle = new BeerStyle();
+
+                    beerStyle.StyleImage = styleImage.Replace("/wwwroot","");
+                    beerStyle.StyleName = style;
+
+                    context.Styles.Add(beerStyle);
+                }
+
+                await context.SaveChangesAsync();
+
             }
         }
     }

@@ -28,17 +28,6 @@ namespace BrewOS.Controllers
                 abv = "5",
                 description = "sf;lkjgl"
 
-            },
-            new FermenterCard()
-            {
-                name = "Test One",
-                style = "Test Style",
-                fermenterName = "F1",
-                actualTemp = 70,
-                targetTemp = 65,
-                initialGravity = 1.065,
-                brewDate = "Now",
-                estCompletionDate = "Unknown"
             }
 
         };

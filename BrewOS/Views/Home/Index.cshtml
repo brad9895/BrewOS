@@ -15,7 +15,7 @@
             {
                 oCard = (OnTapCard)card as OnTapCard;
 
-                <div class="col-sm-4" style="border-radius: 5px; border:groove">
+                <div class="col-sm-6" style="border-radius: 5px; border:groove">
                     <div class="well-sm" align="center" style="border-bottom:groove">
                         @oCard.onTapName
                     </div>
@@ -46,61 +46,6 @@
                 </div>
             }
 
-        }
-    </div>
-    <div class="well">Fermenters</div>
-    <div class="row">
-        @foreach (Card card in Model)
-        {
-
-            @if (card is FermenterCard)
-            {
-                fCard = (FermenterCard)card as FermenterCard;
-                <div class="col-sm-4" style="border-radius: 5px; border:groove">
-                    <div class="well-sm" align="center" style="border-bottom:groove">
-                        @fCard.fermenterName
-                    </div>
-                    <!--span class="glyphicon glyphicon-apple glyphicon-align-center"></!--span>-->
-                    <table class="table table-responsive table-hover" id="tblCard">
-                        <tr>
-                            <td align="center" valign="middle">
-                                <img src=@card.image class="center" width="100" height="100">
-                            </td>
-                            <td>
-                                @*@card.image*@
-                                <table class="table table-responsive table-hover" align="center" width="100" id="tblCard">
-                                    <tr>
-                                        <th colspan="2" style="text-align:center">@fCard.name</th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2" align="center">@fCard.style</th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">Actual Temp</th>
-                                        <td colspan="1" align="right">@fCard.actualTemp</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">Target Temp</th>
-                                        <td colspan="1" align="right">@fCard.targetTemp</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">Inital Gravity</th>
-                                        <td colspan="1" align="right">@fCard.initialGravity</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">Brew Date</th>
-                                        <td colspan="1" align="right">@fCard.brewDate</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="1">Est. Comp. Date</th>
-                                        <td colspan="1" align="right">@fCard.estCompletionDate</td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            }
         }
     </div>
 </div>
