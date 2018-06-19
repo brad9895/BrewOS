@@ -23,11 +23,11 @@ connection.on("Message", (Address, Temperature, Available) => {
 
     console.log("Connected");
 
-    tr = document.getElementById(Address);
+    td = document.getElementById(Address);
     
-    //debugger;
-    if (tr != null) {
-        tr.value = Temperature;
+    debugger;
+    if (td != null) {
+        td.textContent = Temperature;
 
         if (Available)
             tr.style.color = "green";
